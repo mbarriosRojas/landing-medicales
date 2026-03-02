@@ -1,0 +1,145 @@
+---
+const features = [
+  {
+    icon: "shield",
+    title: "Productos Certificados",
+    description: "Todos nuestros medicamentos cuentan con certificación sanitaria"
+  },
+  {
+    icon: "clock",
+    title: "Atención 24/7",
+    description: "Estamos disponibles para atenderte en cualquier momento"
+  },
+  {
+    icon: "truck",
+    title: "Envío Rápido",
+    description: "Recibe tus productos en la puerta de tu casa"
+  },
+  {
+    icon: "badge",
+    title: "Farmacéuticos Expertos",
+    description: "Contamos con profesionales capacitados para asesorarte"
+  }
+];
+---
+
+<section class="about section" id="nosotros">
+  <div class="container">
+    <h2 class="section-title">¿Por Qué Elegirnos?</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p class="about-intro">
+          En <strong>FarmaPlus</strong> nos dedicamos a cuidar tu salud y la de tu familia. 
+          Contamos con más de 20 años de experiencia en el sector farmacéutico, 
+          ofreciendo productos de calidad y un servicio profesional.
+        </p>
+        <p class="about-description">
+          Nuestro compromiso es brindarte acceso a medicamentos seguros, 
+          productos de cuidado personal y atención farmacéutica especializada. 
+          Trabajamos con las mejores marcas del mercado para garantizar tu bienestar.
+        </p>
+      </div>
+      <div class="features-grid">
+        {features.map((feature) => (
+          <div class="feature-item">
+            <div class="feature-icon">
+              {feature.icon === "shield" && (
+                <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+                  <path d="M25 5L10 12V22C10 32 17 40 25 45C33 40 40 32 40 22V12L25 5Z" stroke="var(--color-primary)" stroke-width="2" fill="var(--color-bg-secondary)"/>
+                  <path d="M20 25L23 28L30 21" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              )}
+              {feature.icon === "clock" && (
+                <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+                  <circle cx="25" cy="25" r="18" stroke="var(--color-primary)" stroke-width="2" fill="var(--color-bg-secondary)"/>
+                  <path d="M25 15V25L32 32" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              )}
+              {feature.icon === "truck" && (
+                <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+                  <rect x="8" y="20" width="22" height="15" rx="2" stroke="var(--color-primary)" stroke-width="2" fill="var(--color-bg-secondary)"/>
+                  <path d="M30 25H38L42 30V35H30V25Z" stroke="var(--color-primary)" stroke-width="2" fill="var(--color-bg-secondary)"/>
+                  <circle cx="15" cy="38" r="3" stroke="var(--color-primary)" stroke-width="2" fill="white"/>
+                  <circle cx="36" cy="38" r="3" stroke="var(--color-primary)" stroke-width="2" fill="white"/>
+                </svg>
+              )}
+              {feature.icon === "badge" && (
+                <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+                  <circle cx="25" cy="20" r="12" stroke="var(--color-primary)" stroke-width="2" fill="var(--color-bg-secondary)"/>
+                  <path d="M25 32L20 45L25 42L30 45L25 32Z" stroke="var(--color-primary)" stroke-width="2" fill="var(--color-bg-secondary)"/>
+                  <path d="M25 14L27 19L32 20L28 24L29 29L25 26L21 29L22 24L18 20L23 19L25 14Z" fill="var(--color-primary)"/>
+                </svg>
+              )}
+            </div>
+            <h3 class="feature-title">{feature.title}</h3>
+            <p class="feature-description">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    background-color: white;
+  }
+
+  .about-content {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .about-text {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .about-intro {
+    font-size: var(--font-size-xl);
+    line-height: 1.8;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .about-description {
+    font-size: var(--font-size-lg);
+    line-height: 1.8;
+    color: var(--color-text-light);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-xl);
+  }
+
+  .feature-item {
+    text-align: center;
+    padding: var(--spacing-lg);
+  }
+
+  .feature-icon {
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    justify-content: center;
+  }
+
+  .feature-title {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .feature-description {
+    color: var(--color-text-light);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

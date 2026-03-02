@@ -1,0 +1,22 @@
+{
+  "name": "landing-medicales",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Landing page para productos de farmacia",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbarriosRojas/landing-medicales.git"
+  },
+  "keywords": ["astro", "landing-page", "farmacia", "medicamentos"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "astro": "^4.16.18"
+  }
+}

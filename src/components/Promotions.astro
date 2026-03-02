@@ -1,0 +1,125 @@
+---
+const promotions = [
+  {
+    title: "Vitaminas y Suplementos",
+    discount: "30% OFF",
+    description: "En toda la línea de vitaminas y minerales",
+    badge: "Oferta Limitada"
+  },
+  {
+    title: "Cuidado de la Piel",
+    discount: "2x1",
+    description: "Segundo producto al 50% en cosméticos",
+    badge: "Esta Semana"
+  },
+  {
+    title: "Primeros Auxilios",
+    discount: "25% OFF",
+    description: "Descuento en botiquines y curitas",
+    badge: "Nuevo"
+  },
+  {
+    title: "Higiene Personal",
+    discount: "40% OFF",
+    description: "Productos seleccionados de cuidado personal",
+    badge: "Destacado"
+  }
+];
+---
+
+<section class="promotions section" id="promociones">
+  <div class="container">
+    <h2 class="section-title">Promociones Especiales</h2>
+    <div class="promotions-grid">
+      {promotions.map((promo) => (
+        <article class="promo-card">
+          <div class="promo-badge">{promo.badge}</div>
+          <div class="promo-icon">
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+              <circle cx="30" cy="30" r="28" stroke="var(--color-primary)" stroke-width="2" fill="var(--color-bg-secondary)"/>
+              <path d="M30 15L35 25H25L30 15Z M20 35L25 45H35L40 35H20Z" fill="var(--color-primary)"/>
+            </svg>
+          </div>
+          <div class="promo-content">
+            <h3 class="promo-title">{promo.title}</h3>
+            <div class="promo-discount">{promo.discount}</div>
+            <p class="promo-description">{promo.description}</p>
+            <a href="#productos" class="btn btn-secondary">Ver Más</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .promotions {
+    background-color: var(--color-bg-secondary);
+  }
+
+  .promotions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .promo-card {
+    position: relative;
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-xl);
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    overflow: hidden;
+  }
+
+  .promo-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .promo-badge {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    background: linear-gradient(135deg, var(--color-warning), #f4a261);
+    color: white;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+  }
+
+  .promo-icon {
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    justify-content: center;
+  }
+
+  .promo-title {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .promo-discount {
+    font-size: var(--font-size-3xl);
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .promo-description {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .promotions-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
