@@ -1,0 +1,230 @@
+---
+const slides = [
+  {
+    title: "Cuida tu salud con los mejores productos",
+    description: "Encuentra medicamentos de calidad y productos de cuidado personal",
+    image: "slide1",
+    cta: "Ver Productos"
+  },
+  {
+    title: "Promociones especiales esta semana",
+    description: "Hasta 40% de descuento en productos seleccionados",
+    image: "slide2",
+    cta: "Ver Ofertas"
+  },
+  {
+    title: "Atención farmacéutica profesional",
+    description: "Nuestro equipo está aquí para asesorarte",
+    image: "slide3",
+    cta: "Contáctanos"
+  }
+];
+---
+
+<section class="hero-slider" id="inicio">
+  <div class="slider-container">
+    {slides.map((slide, index) => (
+      <div class={`slide ${index === 0 ? 'active' : ''}`}>
+        <div class="slide-background" data-slide={slide.image}></div>
+        <div class="container">
+          <div class="slide-content">
+            <h1 class="slide-title">{slide.title}</h1>
+            <p class="slide-description">{slide.description}</p>
+            <a href="#productos" class="btn btn-primary">{slide.cta}</a>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+  <div class="slider-controls">
+    <button class="slider-btn prev" aria-label="Previous slide">‹</button>
+    <div class="slider-dots">
+      {slides.map((_, index) => (
+        <button class={`dot ${index === 0 ? 'active' : ''}`} data-slide={index} aria-label={`Go to slide ${index + 1}`}></button>
+      ))}
+    </div>
+    <button class="slider-btn next" aria-label="Next slide">›</button>
+  </div>
+</section>
+
+<style>
+  .hero-slider {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+  }
+
+  .slider-container {
+    position: relative;
+    height: 100%;
+  }
+
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+  }
+
+  .slide.active {
+    opacity: 1;
+  }
+
+  .slide-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    z-index: -1;
+  }
+
+  .slide-background[data-slide="slide1"] {
+    background: linear-gradient(135deg, #00a8cc 0%, #005f73 100%);
+  }
+
+  .slide-background[data-slide="slide2"] {
+    background: linear-gradient(135deg, #0a9396 0%, #2a9d8f 100%);
+  }
+
+  .slide-background[data-slide="slide3"] {
+    background: linear-gradient(135deg, #005f73 0%, #001219 100%);
+  }
+
+  .slide-content {
+    max-width: 600px;
+    color: white;
+    animation: slideIn 0.8s ease-out;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(-50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .slide-title {
+    font-size: var(--font-size-4xl);
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    line-height: 1.2;
+  }
+
+  .slide-description {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-xl);
+    opacity: 0.95;
+  }
+
+  .slider-controls {
+    position: absolute;
+    bottom: var(--spacing-lg);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+
+  .slider-btn {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: var(--font-size-3xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+  }
+
+  .slider-btn:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .slider-dots {
+    display: flex;
+    gap: var(--spacing-sm);
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: var(--transition);
+  }
+
+  .dot.active,
+  .dot:hover {
+    background-color: white;
+    transform: scale(1.2);
+  }
+
+  @media (max-width: 768px) {
+    .hero-slider {
+      height: 500px;
+    }
+
+    .slide-title {
+      font-size: var(--font-size-2xl);
+    }
+
+    .slide-description {
+      font-size: var(--font-size-base);
+    }
+
+    .slider-btn {
+      width: 40px;
+      height: 40px;
+      font-size: var(--font-size-2xl);
+    }
+  }
+</style>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+  const totalSlides = slides.length;
+
+  function showSlide(index: number) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+    
+    currentSlide = (index + totalSlides) % totalSlides;
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+  }
+
+  document.querySelector('.next')?.addEventListener('click', () => {
+    showSlide(currentSlide + 1);
+  });
+
+  document.querySelector('.prev')?.addEventListener('click', () => {
+    showSlide(currentSlide - 1);
+  });
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      showSlide(index);
+    });
+  });
+
+  setInterval(() => {
+    showSlide(currentSlide + 1);
+  }, 5000);
+</script>
